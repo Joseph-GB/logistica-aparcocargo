@@ -283,6 +283,34 @@ body {
     }
 }
 
+/* Botones de Acción en Tablas */
+.action-btn-neon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(0, 242, 255, 0.05);
+    border: 1px solid var(--border-glow);
+    color: var(--primary-neon) !important;
+    transition: var(--transition-fast);
+    text-decoration: none;
+}
+
+.action-btn-neon:hover {
+    background: var(--primary-neon);
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 15px var(--primary-neon);
+    transform: translateY(-3px);
+}
+
+.btn-delete:hover {
+    background: var(--primary-neon); /* Cambiado a celeste por petición del usuario */
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 15px var(--primary-neon);
+}
+
 /* Scrollbar Personalizada */
 ::-webkit-scrollbar {
     width: 8px;
