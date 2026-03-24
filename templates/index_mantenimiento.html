@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Inteligente | APARCO CARGO{% endblock %}
+{% block title %}Dashboard Inteligente | APARCO CARGO EXPRESS E.I.R.L{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.41.0/dist/apexcharts.css">
 <style>
     /* Estilos específicos para el dashboard que extienden styles.css */
     .dashboard-header-modern {
-        background: linear-gradient(90deg, var(--secondary-neon), var(--primary-neon));
+        background: linear-gradient(90deg, var(--secondary-neon), #0084ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-family: 'Orbitron', sans-serif;
@@ -208,14 +208,14 @@
             <div class="result-card mt-4 p-4 animate__animated animate__fadeInUp" style="background: rgba(0,0,0,0.3); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
                 <div class="d-flex align-items-center gap-4 mb-4">
                     <div class="result-status-glow p-4 rounded-circle d-flex align-items-center justify-content-center" 
-                         style="width: 80px; height: 80px; background: {% if resultado == 'Revisión Recomendada' %}rgba(255, 0, 200, 0.1){% else %}rgba(0, 255, 136, 0.1){% endif %}; 
-                                border: 2px solid {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#00ff88{% endif %};
-                                box-shadow: 0 0 20px {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#00ff88{% endif %};">
+                         style="width: 80px; height: 80px; background: {% if resultado == 'Revisión Recomendada' %}rgba(255, 0, 200, 0.1){% else %}rgba(0, 132, 255, 0.1){% endif %}; 
+                                border: 2px solid {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#0084ff{% endif %};
+                                box-shadow: 0 0 20px {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#0084ff{% endif %};">
                         <i class="fas fa-{% if resultado == 'Revisión Recomendada' %}exclamation-triangle{% else %}check-circle{% endif %} fa-2x" 
-                           style="color: {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#00ff88{% endif %};"></i>
+                           style="color: {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#0084ff{% endif %};"></i>
                     </div>
                     <div>
-                        <h3 class="mb-1" style="font-family: 'Orbitron', sans-serif; color: {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#00ff88{% endif %};">{{ resultado|upper }}</h3>
+                        <h3 class="mb-1" style="font-family: 'Orbitron', sans-serif; color: {% if resultado == 'Revisión Recomendada' %}var(--accent-neon){% else %}#0084ff{% endif %};">{{ resultado|upper }}</h3>
                         <p class="text-dim mb-0">ANÁLISIS DE TELEMETRÍA COMPLETADO</p>
                     </div>
                 </div>
@@ -235,9 +235,9 @@
                 <div class="mt-3 p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.1);">
                     <small class="text-dim d-block mb-2 text-uppercase" style="letter-spacing: 1px;">Sugerencia del Sistema:</small>
                     {% if resultado == 'Revisión Recomendada' %}
-                        <span class="text-main">Se detectaron anomalías en los niveles de telemetría. Se sugiere programar una inspección técnica preventiva de inmediato.</span>
+                        <span style="color: #ffffff;">Se detectaron anomalías en los niveles de telemetría. Se sugiere programar una inspección técnica preventiva de inmediato.</span>
                     {% else %}
-                        <span class="text-main">Todos los parámetros se encuentran dentro de los rangos operativos seguros. La unidad puede continuar en ruta.</span>
+                        <span style="color: #ffffff;">Todos los parámetros se encuentran dentro de los rangos operativos seguros. La unidad puede continuar en ruta.</span>
                     {% endif %}
                 </div>
             </div>
@@ -259,7 +259,7 @@
                     {% for alerta in alertas_detalle %}
                     <div class="alert-card-modern {% if alerta.porcentaje >= 80 %}critical{% elif alerta.porcentaje >= 60 %}warning{% endif %} animate__animated animate__fadeInUp" style="animation-delay: calc({{ loop.index0 }} * 0.1s)">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold text-primary-neon">{{ alerta.placa }}</span>
+                            <span class="fw-bold" style="color: #0084ff;">{{ alerta.placa }}</span>
                             <span class="small text-dim">{{ alerta.kilometraje }} KM</span>
                         </div>
                         <div class="progress-container mb-2">
@@ -311,7 +311,7 @@
                         left: 1,
                         top: 1,
                         opacity: 0.5,
-                        color: '#00f2ff'
+                        color: '#0084ff'
                     }
                 },
                 title: {
@@ -321,21 +321,21 @@
                         fontFamily: 'Orbitron'
                     }
                 },
-                colors: ['#00f2ff'],
+                colors: ['#0084ff'],
                 fill: {
                     opacity: 0.4,
-                    colors: ['#00f2ff']
+                    colors: ['#0084ff']
                 },
                 stroke: {
                     show: true,
                     width: 2,
-                    colors: ['#00f2ff'],
+                    colors: ['#0084ff'],
                     dashArray: 0
                 },
                 markers: {
                     size: 4,
                     colors: ['#0a0b10'],
-                    strokeColors: '#00f2ff',
+                    strokeColors: '#0084ff',
                     strokeWidth: 2,
                 },
                 tooltip: {
