@@ -666,6 +666,19 @@ def historial_mantenimiento():
     conn.close()
     return render_template("historial_mantenimiento.html", registros=registros)
 
+@app.route('/eliminar_analisis/<int:id>')
+@login_required
+def eliminar_analisis(id):
+    try:
+        conn = conectar_db()
+        conn.execute("DELETE FROM historial_mantenimiento WHERE id = ?", (id,))
+        conn.commit()
+        conn.close()
+        flash('✅ Análisis eliminado', 'success')
+    except Exception as e:
+        flash(f'❌ Error al eliminar análisis: {str(e)}', 'danger')
+    return redirect(url_for('historial_mantenimiento'))
+
 # ------------------ Reportes ------------------
 @app.route('/reporte/pdf')
 @login_required

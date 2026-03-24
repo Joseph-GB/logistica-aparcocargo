@@ -33,6 +33,7 @@
                     <th>UNIDAD</th>
                     <th>PARÁMETROS ANALIZADOS</th>
                     <th>RESULTADO IA</th>
+                    <th class="text-center">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +59,13 @@
                             {% else %}
                                 <span class="badge bg-success border border-success badge-status">ESTADO ÓPTIMO</span>
                             {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ url_for('eliminar_analisis', id=r.id) }}" 
+                               class="action-btn-neon btn-delete" 
+                               onclick="return confirm('¿Eliminar este registro de análisis?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
