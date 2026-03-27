@@ -319,9 +319,10 @@ def dashboard():
             """, (camion_id, km, comb, aver, carg, rut, resultado))
             conn.commit()
             conn.close()
+            flash('✅ Análisis de mantenimiento guardado', 'success')
             
         except Exception as e:
-            print(f"Error en predicción: {e}")
+            flash(f'❌ Error en el análisis: {str(e)}', 'danger')
             resultado = "Error en los datos"
             datos_prediccion = None
     
@@ -337,18 +338,24 @@ def dashboard():
 @app.route('/gastos', methods=['GET', 'POST'])
 @login_required
 def gastos():
-    conn = conectar_db()
     if request.method == 'POST':
-        camion_id = request.form['camion_id']
-        tipo = request.form['tipo']
-        monto = request.form['monto']
-        desc = request.form['descripcion']
-        conn.execute("INSERT INTO gastos (camion_id, tipo, monto, descripcion) VALUES (?, ?, ?, ?)",
-                    (camion_id, tipo, monto, desc))
-        conn.commit()
-        flash('✅ Gasto registrado', 'success')
-        return redirect(url_for('gastos'))
+        try:
+            camion_id = request.form['camion_id']
+            tipo = request.form['tipo']
+            monto = request.form['monto']
+            desc = request.form['descripcion']
+            conn = conectar_db()
+            conn.execute("INSERT INTO gastos (camion_id, tipo, monto, descripcion) VALUES (?, ?, ?, ?)",
+                        (camion_id, tipo, monto, desc))
+            conn.commit()
+            conn.close()
+            flash('✅ Gasto registrado', 'success')
+            return redirect(url_for('gastos'))
+        except Exception as e:
+            flash(f'❌ Error al registrar gasto: {str(e)}', 'danger')
+            return redirect(url_for('gastos'))
     
+    conn = conectar_db()
     lista_gastos = conn.execute("""
         SELECT g.*, c.placa FROM gastos g 
         JOIN camiones c ON g.camion_id = c.id 
